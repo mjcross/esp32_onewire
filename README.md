@@ -8,13 +8,13 @@ Internally it is based on the ESP's [RMT peripheral](https://docs.espressif.com/
 
 ## Example program
 
-The quickest way to understand a library is to see it in action. So this repository shows a simple example to take readings from several [DS18B20](https://www.analog.com/media/en/technical-documentation/data-sheets/ds18b20.pdf) temperature sensors.
+The quickest way to understand a library is to see it in action. So this repository shows a simple example to take readings from several [DS18B20](https://www.analog.com/media/en/technical-documentation/data-sheets/ds18b20.pdf) temperature sensors. 
 
-By default the example uses GPIO_4 for the 1-Wire bus but this can be easily changed (see `main.c`).
+By default the example uses GPIO_4 for the 1-Wire bus but this can be changed easily (see `main.c`). To function reliably the 1-Wire bus needs an external pull-up resistor (typically about 4k) from this pin to the +3.3v supply.
 
-The example is in the `main` folder, and the library itself is in the `components` folder. 
+The example is in the `main` folder and the library itself is in the `components` folder. 
 
-The project can be built using idy.py or VSCode; instructions are beyond the scope of this README, but are well explained in the ESP [Getting Started](https://docs.espressif.com/projects/esp-idf/en/v5.0.1/esp32/get-started/index.html) documentation. 
+The project can be built using idy.py or VSCode; instructions are beyond the scope of this README but are well explained in the ESP [Getting Started](https://docs.espressif.com/projects/esp-idf/en/v5.0.1/esp32/get-started/index.html) documentation. 
 
 ## File layout
 
@@ -22,12 +22,12 @@ The project can be built using idy.py or VSCode; instructions are beyond the sco
 ```
 .
 ├── CMakeLists.txt
-├── README.md                               the file you are reading
+├── README.md                               this file
 ├── components
 │   └── esp32-onewire                       the 1-wire library
 │       ├── CMakeLists.txt
 │       ├── include
-│       │   ├── onewire.h                   (include this header file to use the library)
+│       │   ├── onewire.h                   <<< include this header file to use the library
 │       │   ├── onewire_symbols.h
 │       │   └── onewire_timings.h
 │       ├── ow_init.c
