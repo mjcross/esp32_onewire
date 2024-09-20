@@ -23,9 +23,9 @@ typedef struct {
 
 bool ow_init (OW *ow, int gpio);
 void ow_deinit (OW *ow);
-void ow_send (OW *ow, uint data);
-void ow_send_bit (OW *ow, uint data);
+void ow_send (OW *ow, unsigned int data);
+void ow_send_bit (OW *ow, unsigned int data);
 uint8_t ow_read (OW *ow);
 bool ow_read_bit (OW *ow);
 bool ow_reset (OW *ow);
-int ow_romsearch (OW *ow, uint64_t *romcodes, int maxdevs, uint command);
+int ow_romsearch (OW *ow, uint64_t *romcodes, int maxdevs, unsigned int command);

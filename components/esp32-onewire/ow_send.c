@@ -17,7 +17,7 @@ static const rmt_transmit_config_t tx_config = {
 };
 
 
-void ow_send (OW *ow, uint data) {
+void ow_send (OW *ow, unsigned int data) {
     rmt_transmit (ow->tx_channel, ow->bytes_encoder, &data, 1, &tx_config);
         if (rmt_tx_wait_all_done (ow->tx_channel, OW_RMT_TIMEOUT_MS) != ESP_OK) {
         ESP_LOGE (__func__, "tx timeout");
@@ -25,7 +25,7 @@ void ow_send (OW *ow, uint data) {
 }
 
 
-void ow_send_bit (OW *ow, uint data) {
+void ow_send_bit (OW *ow, unsigned int data) {
     const rmt_symbol_word_t *ps = &symbol_0;
     if (data != 0) {
         ps = &symbol_1;

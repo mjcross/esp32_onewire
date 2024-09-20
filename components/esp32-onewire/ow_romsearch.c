@@ -6,7 +6,7 @@
 
 #include "onewire.h"
 
-int ow_romsearch (OW *ow, uint64_t *romcodes, int maxdevs, uint command) {
+int ow_romsearch (OW *ow, uint64_t *romcodes, int maxdevs, unsigned int command) {
     int index;
     uint64_t romcode = 0ull;
     int branch_point;
@@ -24,8 +24,8 @@ int ow_romsearch (OW *ow, uint64_t *romcodes, int maxdevs, uint command) {
         }
         ow_send (ow, command);
         for (index = 0; index < 64; index += 1) {   // determine romcode bits 0..63 (see ref)
-            uint a = ow_read_bit (ow);
-            uint b = ow_read_bit (ow);
+            unsigned int a = ow_read_bit (ow);
+            unsigned int b = ow_read_bit (ow);
             if (a == 0 && b == 0) {         // (a, b) = (0, 0)
                 if (index == branch_point) {
                     ow_send_bit (ow, 1);
@@ -43,7 +43,7 @@ int ow_romsearch (OW *ow, uint64_t *romcodes, int maxdevs, uint command) {
             } else if (a != 0 && b != 0) {  // (a, b) = (1, 1) error (e.g. device disconnected)
                 num_found = -2;             // function will return -1
                 finished = true;
-                break;                      // terminate for loop
+                break;                      // terminate `for` loop
             } else {
                 if (a == 0) {               // (a, b) = (0, 1) or (1, 0)
                     ow_send_bit (ow, 0);
@@ -53,13 +53,13 @@ int ow_romsearch (OW *ow, uint64_t *romcodes, int maxdevs, uint command) {
                     romcode |= (1ull << index);
                 }
             }
-        }                                   // end of for loop
+        }                                   // end of `for` loop
 
         if (romcodes != NULL) {
             romcodes[num_found] = romcode;  // store the romcode
         }
         num_found += 1;
-    }                                       // end of while loop
+    }                                       // end of `while` loop
 
     return num_found;
 }
